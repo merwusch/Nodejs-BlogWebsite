@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%-include('./inc/head')%>
+  <link rel="stylesheet" href="/adminStyle.css">
+</head>
+
+<body>
+  <%-include('./inc/nav')%>
+  <section>
+    <a href="/admin/add">Yeni yazı ekle</a>
+    <h1>Yazılar</h1>
+    <ul>
+      <% blogs. forEach(blog => {%>
+      <li>
+        <a class="del" data-doc="<%=blog._id%>">Sil</a>
+        <div>
+          <p class="title"><%=blog.title%></p>
+          <p><%=blog.short%></p>
+        </div>
+        <div class="timestamp"><%=blog.createdAt.toDateString()%></div>
+      </li>
+      <% })%>
+    </ul>
+  </section>
+<script>
+  const del = document.querySelectorAll('a.del');
+  const delLinks = [].slice.call(del);
+  
+  delLinks.forEach((item, i) => {
+    item.addEventListener('click', (e) => {
+    const endpoint = `/admin/delete/${item.dataset.doc}`
+
+    fetch(endpoint, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => window.location.href = data.link)
+    .catch(err => console.log(err))
+  });    
+  });
+  
+</script>
+</body>
+
+</html>

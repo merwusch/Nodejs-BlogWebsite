@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./inc/head')%>
+</head>
+<body>
+    <%-include('./inc/nav')%>
+    <section>
+        <form action="/admin/add" method="post">
+            <div class="form-group">
+                <label for="title">Başlık</label>
+                <input type="text" id="title" name="title" placeholder="Başlık" required>
+            </div>
+            <div class="form-group">
+                <label for="short">Açıklama</label>
+                <input type="text" id="short" name="short" placeholder="Açıklama" required>
+            </div>
+            <div class="form-group">
+                <label for="long">İçerik</label>
+                <textarea id="long" name="long" placeholder="İçerik" required></textarea>
+            </div>
+            <div class="form-group submit-button">
+                <input type="submit" value="Kaydet">
+            </div>
+        </form>
+    </section>
+</body>
+</html>
