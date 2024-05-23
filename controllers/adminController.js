@@ -37,6 +37,7 @@ const admin_delete = (req, res) => {
         })
 }
 
+
 module.exports = {
     admin_index,
     admin_add,
