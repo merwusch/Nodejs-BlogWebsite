@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
+require('dotenv').config()
 const Blog = require('./models/blogs')
 const User = require('./models/users')
 const adminRoutes = require('./routes/adminRoutes')
@@ -12,7 +13,7 @@ const {requireAuth, checkUser} = require('./middlewares/authMiddleware')
 const app = express()
 app.use(express.urlencoded({ extended: true })) //true olduğunda iç içe objeleri de okur
 
-const dbUrl = 'mongodb+srv://ylmzmerwusch:12345@dbdepot.or5bvxu.mongodb.net/node-blog?retryWrites=true&w=majority&appName=DbDepot';
+const dbUrl = process.env.DB_URL
 
 mongoose.connect(dbUrl)
     .then((result) => console.log('Bağlantı kuruldu'))
