@@ -1,27 +1,37 @@
-nav{
+nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     border-bottom: 3px solid #000;
+    padding: 20px 0;
+    background-color: #f8f9fa;
 }
-nav ul{
+
+nav ul {
     display: flex;
     flex-direction: row;
     list-style: none;
 }
-nav ul li{
+
+nav ul li {
     margin-right: 30px;
 }
-nav ul li a{
+
+nav ul li a {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
     text-decoration: none;
     color: #000;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #007BFF;
 }
 /*default*/
 section{
-    max-width: 800px;
+    max-width: 1000px;
     margin: 40px auto;
 }
 section h1{
@@ -69,31 +79,55 @@ section ul li:hover .timestamp {
 
 /*login*/
 form {
+    font-family: 'Times New Roman', serif;
     display: flex;
     flex-direction: column;
-    margin-top: 40%;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-top: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 input[type="text"], input[type="password"] {
-    padding: 10px;
-    margin-bottom: 10px;
+    font-family: 'Times New Roman', serif;
+    padding: 15px;
+    margin-bottom: 20px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #ced4da;
+    font-size: 16px;
 }
 
 input[type="submit"] {
-    padding: 10px;
-    background-color: #007BFF;
+    font-family: 'Times New Roman', serif;
+    padding: 15px;
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #419644;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-family: 'Times New Roman', serif;
+}
+
+a:hover {
+    color: #4CAF50;
+}
+
+.switch-button {
+    text-align: center;
+    margin-top: 20px;
 }
 
 

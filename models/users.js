@@ -22,11 +22,13 @@ userSchema.statics.login = async function(username, password) {
             return user
         }
         else {
-            throw Error('incorrect password')
+            console.error('Incorrect password');
+            throw new Error('Incorrect password');
         }
     }
     else{
-        throw Error('incorrect username')
+        console.error('Incorrect username');
+        throw new Error('Incorrect username');
     }
 
 }

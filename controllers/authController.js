@@ -3,22 +3,23 @@ const jwt = require('jsonwebtoken')
 
 const maxAge = 60 * 60 * 24
 const createToken = (id) => {
-    jwt.sign({ id }, 'secret key', { expiresIn: maxAge })
+    return jwt.sign({ id }, 'secret key', { expiresIn: maxAge })
 }
 
 const login_get = (req, res) => {
     res.render('login', { title: 'Login' })
 }
 
-const login_post = (req, res) => {
+const login_post = async (req, res) => {
     const { username, password } = req.body
     try {
-        const user = User.login(username, password)
+        const user = await User.login(username, password)
         const token = createToken(user._id)
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
         res.redirect('/admin')
     } catch (err) {
         console.log(err)
+        res.status(400).send('Error, unable to login')
     }
 }
 
@@ -26,18 +27,16 @@ const register_get = (req, res) => {
     res.render('register', { title: 'Register' })
 }
 
-const register_post = (req, res) => {
+const register_post = async (req, res) => {
     const user = new User(req.body)
 
-    user.save()
-        .then((result) => {
-            res.send(result)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-
-    res.send('new user created')
+    try {
+        const result = await user.save()
+        res.redirect('/login')
+    } catch (err) {
+        console.log(err)
+        res.status(400).send('Error, unable to register')
+    }
 }
 
 module.exports = {

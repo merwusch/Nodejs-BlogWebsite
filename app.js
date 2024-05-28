@@ -7,7 +7,7 @@ const User = require('./models/users')
 const adminRoutes = require('./routes/adminRoutes')
 const blogRoutes = require('./routes/blogRoutes')
 const authRoutes = require('./routes/authRoutes')
-const {requireAuth} = require('./middlewares/authMiddleware')
+const {requireAuth, checkUser} = require('./middlewares/authMiddleware')
 
 const app = express()
 app.use(express.urlencoded({ extended: true })) //true olduğunda iç içe objeleri de okur
@@ -24,6 +24,7 @@ app.use(express.static('public'))
 app.use(morgan('dev'))
 app.use(cookieParser())
 
+app.get('*', checkUser)
 app.get('/', (req, res) => {
     res.redirect('/blog')
 })
